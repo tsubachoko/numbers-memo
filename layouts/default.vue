@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-app-bar fixed app>
-      <v-toolbar-title v-text="title" />
+      <v-toolbar-title v-text="'Numbers Memo'" />
     </v-app-bar>
     <v-main>
       <v-container>
