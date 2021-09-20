@@ -142,13 +142,10 @@ export default {
     }
   },
   mounted() {
-    const numbersData = sessionStorage
-      .getItem('numbers')
-      .split(',')
-      .map(value => parseInt(value))
+    const numbersData = sessionStorage.getItem('numbers')
 
     if (!!numbersData) {
-      this.numbers = numbersData
+      this.numbers = numbersData.split(',').map(value => parseInt(value))
     }
   },
 }
