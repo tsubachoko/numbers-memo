@@ -109,8 +109,8 @@ export default {
       inputNumber: 0,
       boxNumber,
       numbers: [],
-      range: value => (value >= 0 && value <= 200) || '0から200の数字を入力してください',
-      exist: value => this.numbers.indexOf(value) === -1 || 'すでに入力されている数字です',
+      range: value => (parseInt(value) >= 0 && parseInt(value) <= 200) || '0から200の数字を入力してください',
+      exist: value => this.numbers.indexOf(parseInt(value)) === -1 || 'すでに入力されている数字です',
       // ↓上手く機能しない、一度判定入ったら抜け出せなくなる
       // integer: value => Number.isInteger(value) || '整数を入力してください',
     }
