@@ -121,7 +121,6 @@ export default {
       // 要リファクタ
 
       this.numbers.push(parseInt(value))
-      console.log(this.numbers)
 
       this.addDialog = false
       this.inputNumber = 0
@@ -134,7 +133,16 @@ export default {
       this.resetDialog = false
     },
   },
+  watch: {
+    numbers() {
+      sessionStorage.setItem('numbers', this.numbers)
+    }
+  },
   mounted() {
+    const numbersData = sessionStorage.getItem('numbers').split(',')
+    if (!!numbersData) {
+      this.numbers = numbersData
+    }
   },
 }
 </script>
