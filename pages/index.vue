@@ -2,9 +2,9 @@
   <div>
     <div class="mt-4">
       <v-dialog
-        v-model="dialog"
+        v-model="addDialog"
         tile
-        width="300"
+        width="200"
       >
         <template v-slot:activator="{ on, attrs }">
           <v-btn
@@ -23,6 +23,8 @@
           <v-card-text>
             <v-text-field
               v-model="inputNumber"
+              type="number"
+              :rules="[range, exist]"
             ></v-text-field>
           </v-card-text>
 
@@ -37,6 +39,46 @@
           </v-card-actions>
         </v-card>
       </v-dialog>
+      <v-btn
+        @click="remove"
+      >
+        取消
+      </v-btn>
+      <v-dialog
+        v-model="resetDialog"
+        tile
+        width="400"
+      >
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn
+            v-bind="attrs"
+            v-on="on"
+          >
+            リセット
+          </v-btn>
+        </template>
+
+        <v-card>
+          <v-card-title>
+            すべての入力をリセットしますか？
+          </v-card-title>
+
+          <v-card-actions>
+            <v-btn
+              text
+              @click="reset"
+            >
+              はい
+            </v-btn>
+            <v-btn
+              text
+              @click="resetDialog = false"
+            >
+              いいえ
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
     </div>
 
     <div class="mt-10">
@@ -46,6 +88,7 @@
             <v-card-text>{{ index }}</v-card-text>
             <v-card-title
               v-if="typeof numbers[index - 1] !== 'undefined'"
+              class="justify-center"
             >
               {{ numbers[index - 1] }}
             </v-card-title>
@@ -61,10 +104,15 @@ const boxNumber = 100
 export default {
   data() {
     return {
-      dialog: false,
+      addDialog: false,
+      resetDialog: false,
       inputNumber: 0,
       boxNumber,
       numbers: [],
+      range: value => (value >= 0 && value <= 200) || '0から200の数字を入力してください',
+      exist: value => this.numbers.indexOf(value) === -1 || 'すでに入力されている数字です',
+      // ↓上手く機能しない、一度判定入ったら抜け出せなくなる
+      // integer: value => Number.isInteger(value) || '整数を入力してください',
     }
   },
   methods: {
@@ -72,10 +120,18 @@ export default {
       // メソッド名と処理の不一致感
       // 要リファクタ
 
-      this.numbers.push(value)
+      this.numbers.push(parseInt(value))
+      console.log(this.numbers)
 
-      this.dialog = false
+      this.addDialog = false
       this.inputNumber = 0
+    },
+    remove() {
+      this.numbers.pop()
+    },
+    reset() {
+      this.numbers = []
+      this.resetDialog = false
     },
   },
   mounted() {
