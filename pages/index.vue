@@ -21,11 +21,13 @@
           </v-card-title>
 
           <v-card-text>
-            <v-text-field
-              v-model="inputNumber"
-              type="number"
-              :rules="[range, exist]"
-            ></v-text-field>
+            <v-form ref="form">
+              <v-text-field
+                v-model="inputNumber"
+                type="number"
+                :rules="[range, exist]"
+              ></v-text-field>
+            </v-form>
           </v-card-text>
 
           <v-card-actions>
@@ -120,10 +122,11 @@ export default {
       // メソッド名と処理の不一致感
       // 要リファクタ
 
-      this.numbers.push(parseInt(value))
-
-      this.addDialog = false
-      this.inputNumber = 0
+      if (this.$refs.form.validate()) {
+        this.numbers.push(parseInt(value))
+        this.addDialog = false
+        this.inputNumber = 0
+      }
     },
     remove() {
       this.numbers.pop()
@@ -139,7 +142,11 @@ export default {
     }
   },
   mounted() {
-    const numbersData = sessionStorage.getItem('numbers').split(',')
+    const numbersData = sessionStorage
+      .getItem('numbers')
+      .split(',')
+      .map(value => parseInt(value))
+
     if (!!numbersData) {
       this.numbers = numbersData
     }
