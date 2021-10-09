@@ -1,6 +1,40 @@
 <template>
   <div>
-    <div class="mt-4">
+    <div class="mt-10 mb-16">
+      <v-row justify="center" align="center" max-height="500">
+        <v-col cols="3" v-for="index in boxNumber" :key="index">
+          <v-card height=79 v-if="typeof numbers[index - 1] !== 'undefined'">
+            <v-card-text class = "caption py-0">{{ index }}</v-card-text>
+            <v-card-title
+              class = 'justify-center pt-0 text-h4'
+              v-if="typeof numbers[index - 1] !== 'undefined'"
+            >
+              {{ numbers[index - 1] }}
+            </v-card-title>
+          </v-card>
+
+          <v-card height=79 color="blue-grey lighten-5" v-else>
+            <v-card-text class = "caption py-0">{{ index }}</v-card-text>
+            <v-card-title
+              class = 'justify-center pt-0 text-h4 grey--text text--darken-1'
+            >
+              ?
+            </v-card-title>
+          </v-card>
+        </v-col>
+      </v-row>
+    </div>
+    <!---v-footer app に変更---->
+    <v-footer app class="d-flex justify-center col-12 px-1 white my-9"
+    height = 150>
+      <v-btn
+        @click="remove"
+         class = 'rounded-circle text-decoration-underline pink lighten-3 pink--text'
+         height = "100"
+         width = "100"
+      >
+        取消
+      </v-btn>
       <v-dialog
         v-model="addDialog"
         tile
@@ -10,6 +44,9 @@
           <v-btn
             v-bind="attrs"
             v-on="on"
+            class = 'rounded-circle pink mx-2 text-h5 white--text text-decoration-underline'
+            height = "125"
+            width = "125"
           >
             入力
           </v-btn>
@@ -41,11 +78,6 @@
           </v-card-actions>
         </v-card>
       </v-dialog>
-      <v-btn
-        @click="remove"
-      >
-        取消
-      </v-btn>
       <v-dialog
         v-model="resetDialog"
         tile
@@ -55,6 +87,9 @@
           <v-btn
             v-bind="attrs"
             v-on="on"
+             class = 'rounded-circle text-decoration-underline'
+             height = "100"
+             width = "100"
           >
             リセット
           </v-btn>
@@ -81,23 +116,7 @@
           </v-card-actions>
         </v-card>
       </v-dialog>
-    </div>
-
-    <div class="mt-10">
-      <v-row justify="center" align="center" max-height="500">
-        <v-col cols="3" v-for="index in boxNumber" :key="index">
-          <v-card>
-            <v-card-text>{{ index }}</v-card-text>
-            <v-card-title
-              v-if="typeof numbers[index - 1] !== 'undefined'"
-              class="justify-center"
-            >
-              {{ numbers[index - 1] }}
-            </v-card-title>
-          </v-card>
-        </v-col>
-      </v-row>
-    </div>
+    </v-footer>
   </div>
 </template>
 
