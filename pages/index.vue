@@ -7,7 +7,6 @@
             <v-card-text class = "caption py-0">{{ index }}</v-card-text>
             <v-card-title
               class = 'justify-center pt-0 text-h4'
-              v-if="typeof numbers[index - 1] !== 'undefined'"
             >
               {{ numbers[index - 1] }}
             </v-card-title>
@@ -25,8 +24,11 @@
       </v-row>
     </div>
     <!---v-footer app に変更---->
-    <v-footer app class="d-flex justify-center col-12 px-1 white my-9"
-    height = 150>
+    <v-footer
+      app
+      class="d-flex justify-center col-12 px-1 white my-9"
+      height=150
+    >
       <v-btn
         @click="remove"
          class = 'rounded-circle text-decoration-underline pink lighten-3 pink--text'
@@ -62,7 +64,7 @@
               <v-text-field
                 v-model="inputNumber"
                 type="number"
-                :rules="[range, exist]"
+                :rules="rules"
               ></v-text-field>
             </v-form>
           </v-card-text>
@@ -128,19 +130,21 @@ export default {
       addDialog: false,
       resetDialog: false,
       inputNumber: 0,
-      boxNumber,
       numbers: [],
-      range: value => (parseInt(value) >= 0 && parseInt(value) <= 200) || '0から200の数字を入力してください',
-      exist: value => this.numbers.indexOf(parseInt(value)) === -1 || 'すでに入力されている数字です',
-      // ↓上手く機能しない、一度判定入ったら抜け出せなくなる
-      // integer: value => Number.isInteger(value) || '整数を入力してください',
+      rules: [
+        value => (parseInt(value) >= 0 && parseInt(value) <= 200) || '0から200の数字を入力してください',
+        value => /^\d+$/.test(value) || '整数を入力してください',
+        value => this.numbers.indexOf(parseInt(value)) === -1 || 'すでに入力されている数字です',
+      ],
     }
+  },
+  computed: {
+    boxNumber() {
+      return boxNumber
+    },
   },
   methods: {
     add(value) {
-      // メソッド名と処理の不一致感
-      // 要リファクタ
-
       if (this.$refs.form.validate()) {
         this.numbers.push(parseInt(value))
         this.addDialog = false
