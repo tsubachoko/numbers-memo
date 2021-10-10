@@ -129,7 +129,7 @@ export default {
     return {
       addDialog: false,
       resetDialog: false,
-      inputNumber: 0,
+      inputNumber: '',
       numbers: [],
       rules: [
         value => (parseInt(value) >= 0 && parseInt(value) <= 200) || '0から200の数字を入力してください',
@@ -147,8 +147,10 @@ export default {
     add(value) {
       if (this.$refs.form.validate()) {
         this.numbers.push(parseInt(value))
+
         this.addDialog = false
-        this.inputNumber = 0
+        this.inputNumber = ''
+        this.$refs.form.resetValidation()
       }
     },
     remove() {
