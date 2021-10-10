@@ -6,7 +6,8 @@
           <v-card height=79 v-if="typeof numbers[index - 1] !== 'undefined'">
             <v-card-text class = "caption py-0">{{ index }}</v-card-text>
             <v-card-title
-              class = 'justify-center pt-0 text-h4'
+              class = 'justify-center pt-0 text-h4 px-0'
+              v-if="typeof numbers[index - 1] !== 'undefined'"
             >
               {{ numbers[index - 1] }}
             </v-card-title>
@@ -24,11 +25,8 @@
       </v-row>
     </div>
     <!---v-footer app に変更---->
-    <v-footer
-      app
-      class="d-flex justify-center col-12 px-1 white my-9"
-      height=150
-    >
+    <v-footer app class="d-flex justify-center col-12 px-1 white my-9 clearfix"
+    height = 150>
       <v-btn
         @click="remove"
          class = 'rounded-circle text-decoration-underline pink lighten-3 pink--text'
