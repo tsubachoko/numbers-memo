@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="mt-10 mb-16">
+    <div class="mt-10" style = "padding-bottom:150px">
       <v-row justify="center" align="center" max-height="500">
         <v-col cols="3" v-for="index in boxNumber" :key="index">
           <v-card height=79 v-if="typeof numbers[index - 1] !== 'undefined'">
@@ -26,7 +26,7 @@
     <!---v-footer app に変更---->
     <v-footer 
       app 
-      class="d-flex justify-center col-12 px-1 white my-9 clearfix"
+      class="d-flex justify-center col-12 px-1 white my-9"
       height = 150>
       <v-btn
         @click="remove"
