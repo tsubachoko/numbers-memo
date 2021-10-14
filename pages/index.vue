@@ -7,7 +7,6 @@
             <v-card-text class = "caption py-0">{{ index }}</v-card-text>
             <v-card-title
               class = 'justify-center pt-0 text-h4 px-0'
-              v-if="typeof numbers[index - 1] !== 'undefined'"
             >
               {{ numbers[index - 1] }}
             </v-card-title>
@@ -25,8 +24,10 @@
       </v-row>
     </div>
     <!---v-footer app に変更---->
-    <v-footer app class="d-flex justify-center col-12 px-1 white my-9 clearfix"
-    height = 150>
+    <v-footer 
+      app 
+      class="d-flex justify-center col-12 px-1 white my-9 clearfix"
+      height = 150>
       <v-btn
         @click="remove"
          class = 'rounded-circle text-decoration-underline pink lighten-3 pink--text'
@@ -72,6 +73,7 @@
             <v-btn
               text
               @click="add(inputNumber)"
+              class = "justify-center"
             >
               入力
             </v-btn>
@@ -95,23 +97,37 @@
           </v-btn>
         </template>
 
-        <v-card>
-          <v-card-title>
+        <v-card  
+          >
+          <v-card-title 
+          class="subtitle-2 justify-center"
+          style = "height:140px"
+          >
             すべての入力をリセットしますか？
           </v-card-title>
 
-          <v-card-actions>
-            <v-btn
-              text
-              @click="reset"
-            >
-              はい
-            </v-btn>
+          <v-card-actions 
+          class="justify-center px-0 mx-0 pb-0 mb-0"
+          >
             <v-btn
               text
               @click="resetDialog = false"
+              class="rounded-0 text-decoration-underline pink--text px-0 mx-0 pb-0 mb-0"
+              width="50%"
+              height = "60"
+              style="border-top: solid 1px grey;"
             >
-              いいえ
+              キャンセル
+            </v-btn>
+            <v-btn
+              text
+              @click="reset"
+              class="rounded-0 px-0 mx-0 pb-0 mb-0 "
+              width="50%"
+              height = "60"
+              style="border-top:1px solid grey;border-left: 1px solid grey;"
+            >
+              リセット
             </v-btn>
           </v-card-actions>
         </v-card>
