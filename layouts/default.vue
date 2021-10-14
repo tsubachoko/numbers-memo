@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar fixed app>
+    <v-app-bar fixed app class="red accent-3 white--text">
       <v-toolbar-title v-text="'Numbers Memo'" />
     </v-app-bar>
     <v-main>

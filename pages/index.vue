@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="mt-10" style = "padding-bottom:150px">
+    <div style = "padding-bottom:150px">
       <v-row justify="center" align="center" max-height="500">
         <v-col cols="3" v-for="index in boxNumber" :key="index">
           <v-card height=79 v-if="typeof numbers[index - 1] !== 'undefined'">
@@ -45,7 +45,7 @@
           <v-btn
             v-bind="attrs"
             v-on="on"
-            class = 'rounded-circle pink mx-2 text-h5 white--text text-decoration-underline'
+            class = 'rounded-circle red accent-3 mx-2 text-h5 white--text text-decoration-underline'
             height = "125"
             width = "125"
           >
