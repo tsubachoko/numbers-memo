@@ -59,7 +59,7 @@
           </v-card-title>
 
           <v-card-text>
-            <v-form ref="form">
+            <v-form ref="form" @submit.prevent="add(inputNumber)">
               <v-text-field
                 v-model="inputNumber"
                 type="number"
