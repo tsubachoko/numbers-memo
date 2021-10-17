@@ -24,8 +24,8 @@
       </v-row>
     </div>
     <!---v-footer app に変更---->
-    <v-footer 
-      app 
+    <v-footer
+      app
       class="d-flex justify-center col-12 px-1 white my-9"
       height = 150>
       <v-btn
@@ -97,16 +97,16 @@
           </v-btn>
         </template>
 
-        <v-card  
+        <v-card
           >
-          <v-card-title 
+          <v-card-title
           class="subtitle-2 justify-center"
           style = "height:140px"
           >
             すべての入力をリセットしますか？
           </v-card-title>
 
-          <v-card-actions 
+          <v-card-actions
           class="justify-center px-0 mx-0 pb-0 mb-0"
           >
             <v-btn
@@ -177,11 +177,11 @@ export default {
   },
   watch: {
     numbers() {
-      sessionStorage.setItem('numbers', this.numbers)
+      localStorage.setItem('numbers', this.numbers)
     }
   },
   mounted() {
-    const numbersData = sessionStorage.getItem('numbers')
+    const numbersData = localStorage.getItem('numbers')
 
     if (!!numbersData) {
       this.numbers = numbersData.split(',').map(value => parseInt(value))
