@@ -2,18 +2,18 @@
   <div>
     <div style = "padding-bottom:150px">
       <v-row justify="center" align="center" max-height="500">
-        <v-col cols="3" v-for="index in boxNumber" :key="index">
-          <v-card height=79 v-if="typeof numbers[index - 1] !== 'undefined'">
-            <v-card-text class = "caption py-0">{{ index }}</v-card-text>
+        <v-col cols="3" v-for="index in boxNumber" :key="index" class="py-2" style="padding:9px">
+          <v-card height=79 v-if="typeof numbers[index - 1] !== 'undefined'" class = "rounded-sm">
+            <v-card-text class = "caption py-0 pl-1">{{ index }}</v-card-text>
             <v-card-title
-              class = 'justify-center pt-0 text-h4 px-0'
+              class = 'justify-center pt-0 text-h4 px-0 grey--text text--darken-3'
             >
               {{ numbers[index - 1] }}
             </v-card-title>
           </v-card>
 
-          <v-card height=79 color="blue-grey lighten-5" v-else>
-            <v-card-text class = "caption py-0">{{ index }}</v-card-text>
+          <v-card height=79 color="blue-grey lighten-5" v-else class = "rounded-sm">
+            <v-card-text class = "caption py-0 pl-1">{{ index }}</v-card-text>
             <v-card-title
               class = 'justify-center pt-0 text-h4 grey--text text--darken-1'
             >
